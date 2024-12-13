@@ -1,0 +1,8 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Calculator Component > should match match the snapshot 1`] = `
+"<h2>Simple Calculator</h2>
+<p><input type="text" id="value" name="value" value="0"></p><button class="btn btn-primary" type="button"> Add </button>
+<p class="card-text">Total: 0</p>
+<p class="card-text">Previous Total: 0</p>"
+`;

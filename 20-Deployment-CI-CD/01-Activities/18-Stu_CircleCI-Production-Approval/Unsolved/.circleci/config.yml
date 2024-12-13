@@ -1,0 +1,104 @@
+#Specifies the CircleCI configuration version being used (2.1 in this case), which enables advanced features like orbs and workflows.
+version: 2.1
+
+# Orbs are reusable snippets of CircleCI configurations.
+# The cypress-io/cypress orb is used to simplify running Cypress tests (end-to-end or component tests) in the pipeline.
+# Version 3.3.1 of the Cypress orb is included for this purpose.
+orbs:
+  cypress: cypress-io/cypress@3.3.1
+
+# # Jobs are independent units of work in the pipeline. This configuration defines three jobs:
+# Uses the cypress/base:latest Docker image.
+# Steps:
+# checkout: Clones the repository.
+# Install dependencies: Runs npm install to install required project dependencies.
+# Build the app: Builds the project using npm run build.
+jobs:
+  start-server:
+        docker:
+          - image: cypress/base:latest
+        steps:
+          - checkout
+          - run:
+              name: Install dependencies
+              command: npm install
+          - run:
+              name: Build the app
+              command: npm run build
+
+  # Uses the cimg/base:current Docker image.
+  # Deploys the application to a staging environment on Render.
+  # Steps:
+  # Deploy to Render Staging: Sends a curl request to the RENDER_STAGING_DEPLOYHOOK URL to trigger the deployment.
+              
+  deploy-to-render-staging:
+    docker:
+      - image: cimg/base:current
+    steps:
+      - run:
+          name: Deploy to Render Staging
+          command: |
+            echo "Deploying to Render Staging"
+            curl $RENDER_STAGING_DEPLOYHOOK
+
+  #Similar to the staging job but deploys to the production environment on Render.
+  # Uses the $RENDER_PRODUCTION_DEPLOYHOOK to trigger the deployment.          
+  deploy-to-render-production:
+    docker:
+      - image: cimg/base:current
+    steps:
+      - run:
+          name: Deploy to Render Production
+          command: |
+            echo "Deploying to Render production"
+            curl $RENDER_PRODUCTION_DEPLOYHOOK
+
+
+
+# start-server: Builds and prepares the application.
+# run-component-tests: Executes Cypress component tests using npx cypress run --component.
+# deploy-to-render-staging: Deploys the app to the staging environment if the run-component-tests job succeeds. This only runs on the main branch.
+# hold: Requires manual approval before proceeding to production deployment.
+# deploy-to-render-production: Deploys the app to production after approval. It depends only on the hold job and runs only on the main branch.
+
+workflows:
+  run-tests-and-deploy-to-staging-hold-then-production:
+    jobs:
+      - start-server
+      - cypress/run:
+          name: run-component-tests
+          cypress-command: npx cypress run --component
+      - deploy-to-render-staging:
+          requires:
+            - run-component-tests
+          filters:
+            branches:
+              only: main
+      - hold:
+          # TODO: How can we provide approval for the hold job?
+          type: approval
+          requires:
+            - deploy-to-render-staging
+      - deploy-to-render-production:
+          # TODO: Why can we specify that the only requirement for this job is the hold job?
+          requires:
+            - hold
+          filters:
+            branches:
+              only: main
+
+
+
+# Key Features and Comments
+# Approval Step (hold):
+
+# Ensures human oversight before deploying to production. This is common in workflows to prevent accidental production changes.
+# Branch Filters:
+
+# Deployments (deploy-to-render-staging and deploy-to-render-production) are restricted to the main branch using filters.
+# Environment Variables:
+
+# Deployment uses RENDER_STAGING_DEPLOYHOOK and RENDER_PRODUCTION_DEPLOYHOOK, which should be configured in the CircleCI project settings.
+# Cypress Tests:
+
+# Ensures the application is working correctly before deployment through component tests.
