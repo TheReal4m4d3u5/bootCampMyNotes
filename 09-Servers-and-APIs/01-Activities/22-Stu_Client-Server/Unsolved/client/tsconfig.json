@@ -1,0 +1,47 @@
+{
+  "extends": "../tsconfig.json", //referse to the server side tsconfig 
+
+  
+  
+  // documentaion https://www.typescriptlang.org/tsconfig/#useDefineForClassFields
+  "compilerOptions": { // compiler option 
+
+//   This flag is used as part of migrating to the upcoming standard version of class fields. 
+//   TypeScript introduced class fields many years before it was ratified in TC39. 
+//   The latest version of the upcoming specification has a different runtime behavior to TypeScript’s implementation but the same syntax.
+
+// This flag switches to the upcoming ECMA runtime behavior.
+
+// You can read more about the transition in the 3.7 release notes.
+
+    "useDefineForClassFields": true,  //useDefineForClassFields 
+
+
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+
+
+        //Skip type checking of declaration files. 
+    // This can save time during compilation at the expense 
+    // of type-system accuracy. For example, two libraries could 
+    // define two copies of the same type in an inconsistent way. 
+    // Rather than doing a full check of all d.ts files, 
+    // TypeScript will type check the code you specifically refer to in your app’s source code.
+    "skipLibCheck": true,
+
+
+
+
+    /* Bundler mode */
+
+    // allows TypeScript files to import each other with a TypeScript-specific extension like .ts, .mts, or .tsx.
+    "allowImportingTsExtensions": true,
+
+    //Allows importing modules with a .json extension, which is a common practice in node projects. This includes generating a type for the import based on the static JSON shape.
+    "resolveJsonModule": true,
+    //Setting the isolatedModules flag tells TypeScript to warn you if you write certain code that can’t be correctly interpreted by a single-file transpilation process.
+    "isolatedModules": true,
+    //Do not emit compiler output files like JavaScript source code, source-maps or declarations.
+    "noEmit": true
+  },
+  "include": ["src"]
+}
