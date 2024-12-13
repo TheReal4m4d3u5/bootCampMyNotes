@@ -1,0 +1,21 @@
+header {
+    text-align: center;
+    font-weight: bold;
+    background-color: lightgray;
+    padding: 20px;
+    font-size: 45px;
+}
+
+div {
+    background-color: lightgray;
+    padding : 150px;
+}
+
+
+.mood-board {
+    width: 700px;
+    height: 700px;
+    border: 1px dotted black;
+    padding: 10px;
+    margin: 10px;
+  }
