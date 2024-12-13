@@ -1,0 +1,197 @@
+.box {
+    /*Sets the height and width of the section */
+    width: 2000px;
+    height: 50px
+}
+  
+
+.box2 {
+    /*Sets the height and width of the section */
+    width: 200px;
+    height: 125px;
+
+    
+}
+
+.pinkBanner {
+ 
+    background-color: rgb(185, 152, 158);
+}
+
+
+.orangeBanner {
+
+    background-color: orange;
+    position: relative;
+    top: 20px;
+    height: 2px
+}
+
+.brownBanner {
+
+    background-color: rgb(49, 42, 42);
+
+}
+
+.seconThinest {
+    height: 12px;
+}
+
+.greenBanner{
+    background-color: rgb(12, 73, 12);
+}
+
+
+
+
+.contactMe {
+    color: black;
+    height: 200px;
+}
+
+
+.frenchWritting{
+
+    position: relative;
+    text-align: center;
+    bottom: 2px;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 10px;
+}
+
+
+
+
+
+.comingSoon {
+
+    /* Sets background color */
+    background-color: rgb(49, 42, 42);
+
+    margin: auto;
+    padding: 10px;
+    bottom: 50px;
+    border: 10px solid rgb(223, 182, 189);
+    padding: 10px solid red;
+
+
+
+
+    color: rgb(185, 152, 158);
+    text-align: center;
+}
+
+
+.image-padding {
+    /* Sets padding on all sides to 20px */
+    padding: 20px;
+    background-color: rgb(49, 42, 42);
+  }
+  
+  .image-border {
+    /* Sets border on all sides */
+    border: 10px solid rgb(223, 182, 189);
+  }
+  
+.image-margin {
+/* Sets all sides to 20px */
+margin: 20px;
+background-color: rgb(49, 42, 42);
+}
+
+
+
+.largestBanner{
+    height: 55px;
+}
+
+
+
+
+#firstBanner{
+    text-align: right;
+}
+
+
+box{
+
+    height: 50px;
+    width: 2000px;
+
+    background-color: pink;
+}
+
+#secondBanner{
+    bottom:7px;
+}
+
+
+#contactMe{
+    position: relative;
+    text-align: center;
+}
+
+
+#input{
+    position: relative;
+    left: 600px;
+}
+
+#lastBanner{
+     position: relative;
+    top: 36px;
+}
+
+#first{
+    position: relative;
+    bottom: 7px;
+    height: 5px;
+}
+
+#send{
+    position: relative;
+    left: 650px;
+}
+
+#gitHub{
+    color: white;
+    position: relative;
+    
+}
+
+#portfolio{
+    color: white;
+    position: relative;
+}
+
+#contact{
+    color: white;
+    position: relative;
+}
+
+#newWebsite{
+    position: relative;
+    bottom: 19px;
+    color: rgb(49, 42, 42);
+    text-align: center;
+}
+
+#copyWite{
+    color: white;
+    position: relative;
+    text-align: center;
+}
+
+
+#secondGreen {
+    position: relative;
+
+    top:36px;
+}
+
+
+p.round3 {
+    border: 2px solid red;
+    border-radius: 12px;
+    padding: 5px;
+  }
